@@ -34,8 +34,13 @@ body {
     width: 320px;
     position: absolute;
     top: 150px;
-    left: 100px;
-          
+    left: 100px; 
+  }
+
+  @media(max-width: 600px){
+    .calculator {
+      margin: auto;
+    }
   }
 
   .display {
@@ -120,7 +125,8 @@ body {
   }
 
   h2{
-    background-color: #f4f4f9;
+    background-color: red;
+    width: 400px;
     position: absolute;
     top: 90px;
     left: 500px;
