@@ -4,318 +4,85 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora de Lógica Proposicional</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      height: 100vh;
-      background-color: #f4f4f9;
-      margin: 0;
-      flex-direction: column;
-      padding: 20px;
-      overflow-x: hidden; /* Evitar que a barra de rolagem horizontal apareça */
-    }
-
-    .calculator {
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      width: 320px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 20px; /* Distância entre a calculadora e a tabela */
-      position: fixed;
-      top: 20px;
-      left: 200px;
-      transform: translateX(-50%);      
-    }
-
-    .display {
-      background-color: #222;
-      color: #fff;
-      font-size: 1.4em;
-      padding: 10px;
-      text-align: right;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      height: 50px;
-      line-height: 50px;
-      overflow-x: auto;
-    }
-
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 5px;
-      grid-auto-rows: 50px;
-    }
-
-    .button {
-      background-color: #f1f1f1;
-      border: none;
-      padding: 10px;
-      font-size: 1em;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .button:hover {
-      background-color: #ddd;
-    }
-
-    .button:active {
-      background-color: #bbb;
-    }
-
-    .button-special {
-      background-color: #ff6b6b;
-      color: white;
-    }
-
-    .button-special:hover {
-      background-color: #ff4b4b;
-    }
-
-    .button-equal {
-      background-color: #3f9d71;
-      color: white;
-      grid-column: span 2;
-    }
-
-    .button-equal:hover {
-      background-color: #2f7a53;
-    }
-
-    .button-logic {
-      background-color: #6f6f6f;
-      color: white;
-    }
-
-    .button-logic:hover {
-      background-color: #5f5f5f;
-    }
-
-    .button-entry {
-      background-color: #88c0d0;
-      color: white;
-    }
-
-    .button-entry:hover {
-      background-color: #70a0b0;
-    }
-
-    table {
-      margin-top: 100px; /* Distância entre a calculadora e a tabela */
-      border-collapse: collapse;
-      position: fixed;
-      top: 20px;
-      left: 400px;
-      
-
-     
-    }
-
-    table, th, td {
-      border: 1px solid #ccc;
-    }
-
-    th, td {
-      padding: 8px;
-      text-align: center;
-    }
-
-    th {
-      background-color: #f4f4f4;
-    }
-
-    td {
-      background-color: #f9f9f9;
-    }
-
-    #truth-table {
-      margin-top: 20px;
-      overflow-y: auto;
-      max-height: 400px; /* Tamanho máximo para a tabela */
-    }
-  </style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="calculator">
-    <div class="display" id="display">Digite a expressão</div>
-    <div class="buttons">
-      <button class="button button-special" onclick="clearDisplay()">C</button>
-      <button class="button button-special" onclick="deleteLastChar()">DEL</button>
-      <button class="button-logic" onclick="appendToDisplay('∼')">∼</button>
-      <button class="button-logic" onclick="appendToDisplay('(')">(</button>
 
-      <!-- Variáveis de A até Z -->
-      <button class="button" onclick="appendToDisplay('A')">A</button>
-      <button class="button" onclick="appendToDisplay('B')">B</button>
-      <button class="button" onclick="appendToDisplay('C')">C</button>
-      <button class="button" onclick="appendToDisplay('D')">D</button>
+  <header>
+    <h1>Site da Calculadora Proposicional</h1>
+  </header>
 
-      <button class="button" onclick="appendToDisplay('E')">E</button>
-      <button class="button" onclick="appendToDisplay('F')">F</button>
-      <button class="button" onclick="appendToDisplay('G')">G</button>
-      <button class="button" onclick="appendToDisplay('H')">H</button>
-
-      <button class="button" onclick="appendToDisplay('I')">I</button>
-      <button class="button" onclick="appendToDisplay('J')">J</button>
-      <button class="button" onclick="appendToDisplay('K')">K</button>
-      <button class="button" onclick="appendToDisplay('L')">L</button>
-
-      <button class="button" onclick="appendToDisplay('M')">M</button>
-      <button class="button" onclick="appendToDisplay('N')">N</button>
-      <button class="button" onclick="appendToDisplay('O')">O</button>
-      <button class="button" onclick="appendToDisplay('P')">P</button>
-
-      <button class="button" onclick="appendToDisplay('Q')">Q</button>
-      <button class="button" onclick="appendToDisplay('R')">R</button>
-      <button class="button" onclick="appendToDisplay('S')">S</button>
-      <button class="button" onclick="appendToDisplay('T')">T</button>
-
-      <button class="button" onclick="appendToDisplay('U')">U</button>
-      <button class="button" onclick="appendToDisplay('V')">V</button>
-      <button class="button" onclick="appendToDisplay('W')">W</button>
-      <button class="button" onclick="appendToDisplay('X')">X</button>
-
-      <button class="button" onclick="appendToDisplay('Y')">Y</button>
-      <button class="button" onclick="appendToDisplay('Z')">Z</button>
-      
-      <!-- Operadores -->
-      <button class="button-logic" onclick="appendToDisplay(')')">)</button>
-      <button class="button-logic" onclick="appendToDisplay('^')">^</button>
-      <button class="button-logic" onclick="appendToDisplay('v')">v</button>
-      <button class="button-logic" onclick="appendToDisplay('→')">→</button>
-      <button class="button-logic" onclick="appendToDisplay('↔')">↔</button>
-
-      <!-- Botões de entrada Verdadeira e Falsa -->
-      <button class="button-entry" onclick="appendToDisplay('V')">V</button>
-      <button class="button-entry" onclick="appendToDisplay('F')">F</button>
-
-      <button class="button button-equal" onclick="calculate()">=</button>
-    </div>
-  </div>
-
-  <div id="truth-table"></div>
-
-  <script>
-
+  <main>
+    <div class="calculator">
+      <div class="display" id="display">Digite a expressão</div>
+      <div class="buttons">
+        <button class="button button-special" onclick="clearDisplay()">C</button>
+        <button class="button button-special" onclick="deleteLastChar()">DEL</button>
+        <button style="grid-column: span 2;" class="button-logic" onclick="appendToDisplay('(')">(</button>
+        <button style="grid-column: span 2;" class="button-logic" onclick="appendToDisplay(')')">)</button>
+        <!-- Variáveis de A até Z -->
+        <button class="button" onclick="appendToDisplay('A')">A</button>
+        <button class="button" onclick="appendToDisplay('B')">B</button>
+        <button class="button" onclick="appendToDisplay('C')">C</button>
+        <button class="button" onclick="appendToDisplay('D')">D</button>
   
-    function appendToDisplay(value) {
-      const display = document.getElementById('display');
-      if (display.innerText === 'Digite a expressão') {
-        display.innerText = value;
-      } else {
-        display.innerText += value;
-      }
-    }
-
-    function clearDisplay() {
-      document.getElementById('display').innerText = 'Digite a expressão';
-    }
-
-    function deleteLastChar() {
-      const display = document.getElementById('display');
-      if(display.innerText !== 'Digite a expressão'){
-        display.innerText = display.innerText.slice(0, -1);
-        if(display.innerText === ''){
-          display.innerText = 'Digite a expressão';}
-      }      
-    }
-   
-    function calculate() {
-      const display = document.getElementById('display');
-      const expression = display.innerText; //Expressão proposicional
-
-      //Armazena um array com as proposições [A,B]
-      const variables = Array.from(new Set(expression.match(/[A-Z]/g) || []));  
-
-      //Array com todas as combinações de true e false, sem ser o resultado final
-      //[false,false, false,true, true,false, true,true]
-      const combinations = generateCombinations(variables.length);
-
-      // Gerar a tabela-verdade
-      let tableHtml = `<table><thead><tr>${variables.map(v => `<th>${v}</th>`).join('')}<th>Resultado</th></tr></thead><tbody>`;
-
- 
-      combinations.forEach(combination => {
-        const values = {};
-        variables.forEach((varName, index) => {
-          values[varName] = combination[index];
-        });
-
-        const result = evaluatePropositionalLogic(expression, values);
-        tableHtml += `<tr>${variables.map(v => `<td>${values[v] ? 'V' : 'F'}</td>`).join('')}<td>${result ? 'V' : 'F'}</td></tr>`;
-      });
-
-      tableHtml += `</tbody></table>`;
-
-      // Exibir a tabela-verdade
-      document.getElementById('truth-table').innerHTML = tableHtml;
-    }
-
-    function generateCombinations(variables) {
-      const total_de_Linhas = Math.pow(2, variables);
-      const combinations = [];
-
-      for (let i = 0; i < total_de_Linhas; i++) {
-        const combination = [];
-        for (let j = 0; j < variables; j++) {
-          combination.push(Boolean(i & ( Math.pow(2, variables-1)>> j)));
-        }
-        combinations.push(combination);
-    
-      }
-      
-      return combinations;
-    }
-
-    function evaluatePropositionalLogic(expression, values) {
-      
-      // Operações lógicas
-     // Condicional---------------------------------
-     var acc = ""; 
-   
-     for (let i = 0; i < expression.length; i++) {
-        if(expression.charAt(i-1) != ")" && expression.charAt(i) == "→"){
-          acc = acc.slice(0, i-1) + "!"+ expression.charAt(i-1) + "||" ;}
+        <button class="button" onclick="appendToDisplay('E')">E</button>
+        <button class="button" onclick="appendToDisplay('F')">F</button>
+        <button class="button" onclick="appendToDisplay('G')">G</button>
+        <button class="button" onclick="appendToDisplay('H')">H</button>
+  
+        <button class="button" onclick="appendToDisplay('I')">I</button>
+        <button class="button" onclick="appendToDisplay('J')">J</button>
+        <button class="button" onclick="appendToDisplay('K')">K</button>
+        <button class="button" onclick="appendToDisplay('L')">L</button>
+  
+        <button class="button" onclick="appendToDisplay('M')">M</button>
+        <button class="button" onclick="appendToDisplay('N')">N</button>
+        <button class="button" onclick="appendToDisplay('O')">O</button>
+        <button class="button" onclick="appendToDisplay('P')">P</button>
+  
+        <button class="button" onclick="appendToDisplay('Q')">Q</button>
+        <button class="button" onclick="appendToDisplay('R')">R</button>
+        <button class="button" onclick="appendToDisplay('S')">S</button>
+        <button class="button" onclick="appendToDisplay('T')">T</button>
+  
+        <button class="button" onclick="appendToDisplay('U')">U</button>
+        <button class="button" onclick="appendToDisplay('V')">V</button>
+        <button class="button" onclick="appendToDisplay('W')">W</button>
+        <button class="button" onclick="appendToDisplay('X')">X</button>
+  
+        <button class="button" onclick="appendToDisplay('Y')">Y</button>
+        <button class="button" onclick="appendToDisplay('Z')">Z</button>
         
-        else if(expression.charAt(i-1) == ")" && expression.charAt(i) == "→"){
-          acc = "!" + acc.slice(0, i) + "||" ;}
+        <!-- Botões de entrada Verdadeira e Falsa -->
+        <button style="grid-column: span 2;" class="button-entry" onclick="appendToDisplay('[Verdadeiro]')">V</button>
+        <button style="grid-column: span 2;" class="button-entry" onclick="appendToDisplay('[Falso]')">F</button>
+  
+        <!-- Operadores -->
+        <button class="button-logic" onclick="appendToDisplay('∼')">∼</button>
+        <button class="button-logic" onclick="appendToDisplay('∧')">∧</button>
+        <button class="button-logic" onclick="appendToDisplay('∨')">∨</button>
+        <button class="button-logic" onclick="appendToDisplay('→')">→</button>
+        <button class="button-logic" onclick="appendToDisplay('↔')">↔</button>
+        <button class="button-logic" onclick="appendToDisplay('⊻')">⊻</button>
+        
+        
+       
+  
+        <button class="button button-equal" onclick="calculate()">=</button>
+      </div>
+    </div>
+  
+      
+      <h2>Tipo da Proposição: <strong  id="tipo_Preposicao">?</strong></h2>
+      <div id="truth-table"></div>
+    
+  </main>
+  
+  <footer>
+    <p>Meu GitHub: <a href="https://github.com/ThiagoRCdev10" target="_blank">ThiagoRCdev10</a></p>
+  </footer>
 
-        else{acc = acc + expression.charAt(i);}
-        console.log(acc);
-      }
-     expression = acc;
-     
-
-     
-
-     /*for (let i = 0; i < expression.length; i++) {
-        if(expression.charAt(i) == "→"){
-          acc = acc + "||"; 
-        }else{acc = acc + expression.charAt(i);}
-      }
-      expression = acc;*/
-      // --------------------------------------------
-
-      expression = expression.replace(/∼/g, '!');  // Negação
-      expression = expression.replace(/\^/g, '&&'); // Conjunção (AND)
-      expression = expression.replace(/v/g, '||'); // Disjunção (OR)
-      expression = expression.replace(/↔/g, '=='); // Bi-condicional
-
-      // Substituir variáveis proposicionais pelos valores passados
-      expression = expression.replace(/[A-Z]/g, match => values[match] !== undefined ? values[match] : false);
-
-
-      return new Function('return ' + expression)();
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

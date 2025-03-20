@@ -1,0 +1,187 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0px;
+    padding:0px;
+  }
+
+  header{
+    font-size: 15pt;
+    color: #0045bc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #38b3db;
+    text-align: center;
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+  }
+
+  main{
+    margin: auto;
+  }
+
+  .calculator {
+    border: 10px solid black;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 320px;
+    position: absolute;
+    top: 150px;
+    left: 100px;
+          
+  }
+
+  .display {
+    background-color: #222;
+    color: #fff;
+    font-size: 1.78em;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    height: 50px;
+    line-height: 50px;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5px;
+    grid-auto-rows: 50px;
+  }
+
+  .button {
+    background-color: #f1f1f1;
+    border: none;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .button:hover {
+    background-color: #ddd;
+  }
+
+  .button:active {
+    background-color: #bbb;
+  }
+
+  .button-special {
+    background-color: #ff6b6b;
+    color: white;
+  }
+
+  .button-special:hover {
+    background-color: #ff4b4b;
+  }
+
+  .button-equal {
+    background-color: #3f9d71;
+    color: white;
+    grid-column: span 6;
+    grid-row: span 2;
+    font-size: 32pt;
+  }
+
+  .button-equal:hover {
+    background-color: #2f7a53;
+  }
+
+  .button-logic {
+    background-color: #6f6f6f;
+    color: white;
+    border-radius: 10px;
+  }
+
+  .button-logic:hover {
+    background-color: #5f5f5f;
+  }
+
+  .button-entry {
+    font-size: 16pt;
+    border-radius: 10px;
+    background-color: #38bde1b9;
+    color: white;
+  }
+
+  .button-entry:hover {
+    background-color: #598e9f;
+  }
+
+  h2{
+    background-color: #f4f4f9;
+    position: absolute;
+    top: 90px;
+    left: 500px;
+  }
+
+  #tipo_Preposicao{
+    color: rgb(17, 27, 222);
+  }
+
+  table {
+    border-collapse: collapse; 
+    margin-bottom: 100px;
+    margin-right: 100px;
+    font-size: 20pt;
+  }
+
+  table, th, td {
+    border: 1px solid #000000;
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: center;
+  }
+
+  th {
+    background-color: #c3c1c1;
+    font-size: 20pt;
+  }
+
+  td {
+    background-color: #f9f9f9;
+  }
+
+  #truth-table {
+    position: absolute;
+    top: 150px;
+    left: 500px;
+  }
+
+  footer{
+    background-color: #38b3db;
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    font-size: 14pt;
+    font-weight: bold;
+  }
+
+  a{
+    color: #074d90;
+    text-decoration: none;
+    font-family: fantasy;
+    font-size: 18pt;
+  }
+
+  a:hover{
+    color: #072e90; ;
+    text-decoration: underline;
+  }
